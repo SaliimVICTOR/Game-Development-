@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeoLeo</title>
+    <style>
+        body{
+            font-family: monospace;
+        }
+    .game{
+    width: 340px;
+    height: 630px;
+    border: 4px solid #07091c;
+    border-radius: 5%;
+    border-style: double;
+    background: linear-gradient(to left,#07091c, #07091c,#07091c, white ,white, white,#07091c, #07091c, #07091c);
+    overflow: hidden;
+    }
+    .road{
+    width: 340px;
+    height: 630px;
+    border-radius: 5%;
+    border-style: double;
+    
+    }
+    .road p{
+        float: left;
+    }
+    #r1{
+    width: 100px;
+    height: 600px;
+    border-radius: 5%;
+    }
+    #r2{
+    width: 100px;
+    height: 600px;
+    border-radius: 5%;
+    }
+    #r3{
+    width: 100px;
+    height: 600px;
+    border-radius: 5%;
+    }
+    #r1::before{
+        content:"⬆️";
+        display: block;
+        width: 18px;
+        height: 50px;
+        position: absolute;
+        left: 15%;
+        animation: onGo 2s linear infinite;
+    }
+    #r1::after{
+        content:"⬆️";
+        display: block;
+        width: 18px;
+        height: 50px;
+        position: absolute;
+        left: 15%;
+        top: 400px;
+        animation: onGo 2s linear infinite;
+    }
+    #r2::before{
+        content:"⬆️";
+        display: block;
+        width: 18px;
+        height: 50px;
+        position: absolute;
+        left: 47.6%;
+        animation: onGo 2s linear infinite;
+    }
+    #r2::after{
+        content:"⬆️";
+        display: block;
+        width: 18px;
+        height: 50px;
+        position: absolute;
+        left: 47.6%;
+        top: 400px;
+        animation: onGo 2s linear infinite;
+    }
+    #r3::before{
+        content:"⬆️";
+        display: block;
+        width: 18px;
+        height: 50px;
+        position: absolute;
+        left: 78%;
+        animation: onGo 2s linear infinite;
+    }
+     #r3::after{
+        content:"⬆️";
+        display: block;
+        width: 18px;
+        height: 50px;
+        position: absolute;
+        left: 78%;
+        top: 400px;
+        animation: onGo 2s linear infinite;
+    }
+    
+@keyframes onGo{
+0%{transform: translateY(0px)}
+50%{transform: translateY(300px)}
+100%{transform: translateY(600px)}
+}
+#bar{
+    position: relative;
+    width: 3240ppx;
+    height: 50px;
+    background: white;
+    border: 5px solid;
+    bottom: 640px;
+    border-radius: 40px;
+    padding: 10px;
+    margin: 20px;
+    display: flex;
+justify-content: center;
+align-items: center;
+}
+.controls{
+width:340px;
+height:150px;
+background: white;
+border: 4px solid;
+position: absolute;
+bottom:2%;
+border-radius: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.controls button{
+width: 100px;
+height: 145px;
+float: left;
+border-radius: 20px;
+font-size: 70px;
+margin: 7px;
+border: 0px;
+}
+.controls button:active{
+transform: scale(0.5)
+}
+#car{
+    width: 50px;
+    height 
+}
+.Player{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 26.6%;
+    left: 10px;
+    
+}
+.Player img{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+}
+#explode{
+position: absolute;
+width: 100px;
+height: 100px;
+background: #e6bd13b6;
+bottom: 20px;
+border-radius: 50%;
+border-top-left-radius: 50%;
+border-top-right-radius: 50%;
+box-shadow: 0 0 20px #e6bd13b6,0 0 30px #e6bd13b6,0 0 40px #e6bd13b6,0 0 50px #e6bd13b6,0 0 60px #e6bd13b6,0 0 70px #e6bd13b6,0 0 80px #e6bd13b6,0 0 90px #e6bd13b6,0 0 100px #e6bd13b6;
+
+}
+#reb{
+width: 10px;
+height: 17px;
+position: absolute;
+background: #ff3f15;
+left: 15%;
+font-size: 15px;
+transform: translateY(-740px);
+border-radius: 7px;
+padding: 2px;
+}
+#enemy{
+width: 40px;
+content:"enemy Road";
+height: 17px;
+position: absolute;
+background: #5b6cb5e5;
+left: 65%;
+font-size: 15px;
+transform: translateY(-740px);
+border-radius: 7px;
+padding: 2px;
+}
+.oppo{
+    width: 100px;
+    height: 50px;
+    border: 2px solid;
+    background: red;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    bottom: 700px;
+}
+#killer{
+    width: 40px;
+    height: 40px;
+    border: 5px solid;
+    border-radius: 50%;
+    position: relative;
+    top: 50px;
+    border-left-color: transparent;
+    animation: roto .3s linear infinite;
+    border-bottom-color: red;
+}
+@keyframes roto{
+0%,100%{transform: rotate(0deg)}
+50%{transform: rotate(360deg)}
+}
+#eroad{
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    background: jblack;
+    left: 150px;
+    transform: translate(100px, -740px);
+    border-radius: 10px;
+    color: white;
+    background: white;
+}
+#score{
+    position: absolute;
+    width: 150px;
+    height: 20px;
+    background: black;
+    left: 100px;
+    bottom: 550px;
+    border-radius: 10px;
+    color: white;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.retryPage{
+    width: 300px;
+    height: 300px;
+    background: blue;
+    position: absolute;
+    bottom: 230px;
+    left: 33px;
+    border-radius: 10px;
+    transform: scale(.3);
+}
+#good{
+    width: 200px;
+    height: 50px;
+    position: relative;
+    top: 100px;
+    font-weight: 1000;
+    transform: scale(2);
+    color: white;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+#try{
+width: 100px;
+height: 50px;
+position: relative;
+top: 100px;
+font-weight: 1000;
+transform: scale(2);
+font-family: monospace;
+}
+
+#number{
+position: absolute;
+width: 100px;
+height: 50px;
+left: 100px;
+top: 300px
+}
+.start{
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    width: 345px;
+    height: 700px;
+    background:#00cc24;
+    position: absolute;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+#bilow{
+width: 200px;
+height: 100px;
+border-radius: 20px;
+font-weight: 1000;
+font-size: 20px;
+}
+.all{
+    display: none;
+}
+    </style>
+</head>
+<body>
+    <div class="start">
+        <button id="bilow">START</button>
+    </div>
+    <div class="all">
+<div class="game">   
+<div class="road">
+<p id="r1"></p>
+<p id="r2"></p>
+<p id="r3"></p>
+</div>
+
+
+<p id="enemy"></p>
+
+<div class="controls">
+<button  id="left">◀️</button >
+<button  id="boom">💥</button >
+<button  id="right">▶️</button >
+</div>
+
+<div class="Player">
+<p id="explode"></p>
+<p id="car"><img src="car1.png"></p>
+</div>
+    
+    
+ <div class="oppo">
+ <p id="killer"></p>
+ <p id="killer"></p>
+ </div>
+ 
+ 
+<div id="bar">
+</div>
+<p id="eroad"></p>
+<p id="reb"></p>
+
+
+<center>
+<div class="retryPage">
+<p id="good">WELL PLAYED!</p>
+<button id="try">Try again!</button>
+<button id="number"><a href="https://wa.me/+254791833472">FEED BACK</a></button>
+</div>
+</center>
+<p id="score"></p>
+</div>
+ </body>   
+<script>
+let start = document.querySelector(".start")
+let bilow =  document.getElementById("bilow")
+let All = document.querySelector(".all")    
+bilow.onclick=function (){
+All.style="display: block";
+kuDhufo()
+start.style="display: none;"
+}
+function kuDhufo(){
+  
+    sc = 0;
+    attack=0;
+    let fii = 0;
+    width=0;
+    let reloading = 0;
+  
+
+let start = document.querySelector(".start")
+let r1=document.getElementById("r1")
+let r2=document.getElementById("r2")
+let r3=document.getElementById("r3")
+
+
+
+
+
+let again = document.getElementById("try");
+let retry = document.querySelector(".retryPage");
+
+retry.style="background: yellow; display: none";
+let score = document.getElementById("score");
+let eroad = document.getElementById("eroad");
+let oppo=document.querySelector(".oppo")
+let reb = document.getElementById("reb")
+let left = document.getElementById("left");
+let right = document.getElementById("right");
+let boom = document.getElementById("boom");
+let explode= document.getElementById("explode")
+let player = document.querySelector(".Player")
+let car= document.getElementById("car");
+
+again.onclick=function(){
+window.location.reload();
+}
+
+   var kow = 120;
+   var labo = 245;
+   let Roads = 0;
+
+
+right.onclick = function (){
+    Roads+=1;
+if(Roads==1){
+bar.innerHTML="Road : 2"
+player.style="transform: translateX("+kow+"px); transition: .5s";
+}
+else if(Roads==2){
+bar.innerHTML="Road : 3"
+player.style="transform: translateX("+labo+"px); transition: .5s";
+}
+else if(Roads==0){
+bar.innerHTML="Road : 1"
+ player.style="transform: translateX("+labo+"px); transition: .5s";
+}
+else if(Roads==3){
+bar.innerHTML="Road : 3"
+ Roads-=1;
+}
+
+
+
+
+}
+
+eroad.style="background: red; display: flex; justify-content: center; align-items: center;"
+
+
+left.onclick= function(){
+ Roads-=1;
+ if(Roads==1){
+ player.style="transform: translateX("+kow+"px); transition: .5s";
+ bar.innerHTML="Road : 2"
+}
+else if(Roads==0){
+    player.style="transition: .5s"
+bar.innerHTML="Road : 1"
+}
+else if(Roads==2){
+bar.innerHTML= "Road : 3"
+ player.style="transform: translateX("+labo+"px); transition: .5s";
+}
+if(Roads<=0){
+    return Roads=0;
+}
+}
+
+ready = setInterval(reload, 1000)
+
+function reload(){
+if(reloading==5){
+reb.style="background: #00ff03;width:"+width+"px";
+boom.addEventListener("touchstart",function(){
+explode.style="display:block";
+width=0;
+reloading=0;
+function dhac(){
+fii+=1;
+explode.style="width: "+fii+"px; transition:.2s;";
+}
+})
+}
+
+
+if(reloading<=4){
+explode.style="display:none"
+width+=20;
+reloading+=1;
+reb.innerHTML= "Reloading:"+reloading;
+reb.style="width:"+width+"px";
+explode.style="display:none";
+}
+
+
+
+
+
+
+}
+explode.style="display:none"
+
+attacking= setInterval(fight,3000)
+
+function fight(){
+var choose = [1,2,3]
+choose = Math.floor(Math.random()*choose.length+1);
+if(choose==1){
+eroad.innerHTML= "1"
+}
+else if(choose==2){
+eroad.innerHTML= "2"
+}
+if(choose==3){
+eroad.innerHTML= "3"
+}
+attack=0;
+}
+
+
+
+pushing = setInterval(weerar1,1)
+
+function weerar1(){
+sc++;
+score.innerHTML="SCORE : "+sc+"cm"
+if(eroad.innerHTML=="1"){
+attack++;
+oppo.style="position: absolute; transform: translateY("+attack+"px)"
+}
+if(eroad.innerHTML=="2"){
+attack++;
+oppo.style="position: absolute; transform: translate(116px,"+attack+"px)"
+}
+if(eroad.innerHTML=="3"){
+attack++;
+oppo.style="position: absolute; transform: translate(230px,"+attack+"px)"
+}
+if(attack>=500){
+    attack=0;
+}
+if(bar.innerHTML=="Road : 1" && eroad.innerHTML=="1" && attack>=450){
+    clearInterval(attacking)
+    clearInterval(pushing) 
+    clearInterval(ready)
+    explode.style="display: block"
+    score.style="position: absolute;transform: scale(2); top: 130px; transition: .5s; left: 107px;"
+left.style="display: none"
+right.style="display: none"
+boom.style="display: none"
+r1.style="display: none"
+r2.style="display: none"
+r3.style="display: none"
+retry.style="transform: scale(1); background: #8d523b; transition: .5s; display: block"
+}
+if(bar.innerHTML=="Road : 2" && eroad.innerHTML=="2" && attack>=450){
+    clearInterval(attacking)
+    clearInterval(pushing) 
+    clearInterval(ready)
+    explode.style="display: block"
+    score.style="position: absolute;transform: scale(2); top: 130px; transition: .5s;left: 107px;"
+left.style="display: none"
+right.style="display: none"
+boom.style="display: none"
+r1.style="display: none"
+r2.style="display: none"
+r3.style="display: none"
+retry.style="transform: scale(1); background: #8d523b; transition: .5s; display: block"
+}
+if(bar.innerHTML=="Road : 3" && eroad.innerHTML=="3" && attack>=450){
+    clearInterval(attacking)
+    clearInterval(pushing) 
+    clearInterval(ready)
+    explode.style="display: block";
+    score.style="position: absolute;transform: scale(2); top: 130px; transition: .5s;left: 107px;"
+left.style="display: none"
+right.style="display: none"
+boom.style="display: none"
+r1.style="display: none"
+r2.style="display: none"
+r3.style="display: none";
+
+retry.style="transform: scale(1); background: #8d523b; transition: .5s; display: block"
+}
+
+}
+}
+</script>
+</html>
