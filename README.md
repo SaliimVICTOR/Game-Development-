@@ -1,3 +1,3 @@
 my Name is Saliim
-i love Learning Software programing special, Game Developing.. 
+i love Learning Software programing specially in Game Developing.. 
 
